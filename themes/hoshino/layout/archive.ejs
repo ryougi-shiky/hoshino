@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Archives -
+      <%= config.title %></title>
+    <link rel="stylesheet" href="../source/css/style.css">
+  </head>
+
+  <body>
+    <header>
+      <h1>Archives</h1>
+    </header>
+    <main>
+      <% site.posts.each(function(post){ %>
+        <article>
+          <h2>
+            <a href="<%= post.url %>"><%= post.title %></a>
+          </h2>
+          <time datetime="<%= post.date.toISOString() %>"><%= post.date.format('YYYY-MM-DD') %></time>
+        </article>
+        <% }); %>
+        </main>
+        <footer>
+          <p>Powered by Hexo. Theme by Hoshino.</p>
+        </footer>
+      </body>
+
+    </html>

@@ -1,0 +1,37 @@
+# Theme Configuration for Hoshino
+
+# Main Menu
+menu:
+  Home: /
+  Archives: /archives
+  About: /about
+
+# Social Links
+social:
+  GitHub: https://github.com/ryougi-shiky
+  Twitter: https://twitter.com/your_twitter
+  Instagram: https://instagram.com/your_instagram
+
+# RSS
+rss: /atom.xml
+
+# Favicon
+favicon: /favicon.png
+
+# Default thumbnail for posts without images
+default_thumbnail: /images/default-thumbnail.png
+
+# Widgets
+widgets:
+  - recent_posts
+  - category
+  - tag
+
+# Custom CSS
+custom_css: /css/custom.css
+
+# Google Analytics
+google_analytics: UA-XXXXXXXX-X
+
+# Disqus
+disqus_shortname: your_disqus_shortname
