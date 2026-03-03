@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="5000" height="3333" viewBox="0 0 800 533">
+  <defs>
+    <radialGradient id="polaris" cx="50%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#c8d8f0" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#060918" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="533" fill="#060918"/>
+  <rect width="800" height="300" fill="url(#polaris)"/>
+  <!-- Circular star trails -->
+  <circle cx="400" cy="110" r="80" stroke="#f0d68c" stroke-width="0.5" fill="none" opacity="0.4"/>
+  <circle cx="400" cy="110" r="120" stroke="#c8d8f0" stroke-width="0.5" fill="none" opacity="0.35"/>
+  <circle cx="400" cy="110" r="160" stroke="#8fa8d0" stroke-width="0.5" fill="none" opacity="0.3"/>
+  <circle cx="400" cy="110" r="200" stroke="#6a88b0" stroke-width="0.5" fill="none" opacity="0.25"/>
+  <!-- Partial arc trails -->
+  <path d="M 340,110 A 60,60 0 0,1 460,110" stroke="#f0d68c" stroke-width="1" fill="none" opacity="0.6"/>
+  <path d="M 300,110 A 100,100 0 0,1 500,110" stroke="#c8d8f0" stroke-width="0.8" fill="none" opacity="0.5"/>
+  <path d="M 260,110 A 140,140 0 0,1 540,110" stroke="#8fa8d0" stroke-width="0.8" fill="none" opacity="0.4"/>
+  <!-- Polaris -->
+  <circle cx="400" cy="110" r="3" fill="#f0d68c" opacity="0.9"/>
+  <!-- Desert dunes silhouette -->
+  <path d="M0,533 L0,400 Q100,340 200,370 Q300,400 400,350 Q500,300 600,360 Q700,420 800,380 L800,533 Z" fill="#0e0a04"/>
+  <!-- Warm horizon glow -->
+  <ellipse cx="400" cy="380" rx="300" ry="60" fill="#8b4513" opacity="0.15"/>
+</svg>

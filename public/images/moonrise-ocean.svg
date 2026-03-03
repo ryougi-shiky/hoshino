@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3500" height="5250" viewBox="0 0 350 525">
+  <defs>
+    <radialGradient id="moon" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f0d68c" stop-opacity="1"/>
+      <stop offset="70%" stop-color="#c8a84b" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#8b6914" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#060918"/>
+      <stop offset="60%" stop-color="#0a1535"/>
+      <stop offset="100%" stop-color="#1a2850"/>
+    </linearGradient>
+  </defs>
+  <rect width="350" height="525" fill="url(#sky)"/>
+  <!-- Moon -->
+  <circle cx="175" cy="180" r="35" fill="url(#moon)"/>
+  <circle cx="175" cy="180" r="35" fill="#f0d68c" opacity="0.8"/>
+  <!-- Moon glow -->
+  <circle cx="175" cy="180" r="60" fill="#f0d68c" opacity="0.05"/>
+  <!-- Moon path on water -->
+  <polygon points="155,350 195,350 220,525 130,525" fill="#f0d68c" opacity="0.15"/>
+  <!-- Ocean -->
+  <rect x="0" y="330" width="350" height="195" fill="#0a1535"/>
+  <!-- Waves -->
+  <path d="M0 345 Q44 335 88 345 Q132 355 175 345 Q219 335 262 345 Q306 355 350 345" stroke="#4a7090" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M0 365 Q44 355 88 365 Q132 375 175 365 Q219 355 262 365 Q306 375 350 365" stroke="#3a6080" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M0 385 Q44 375 88 385 Q132 395 175 385 Q219 375 262 385 Q306 395 350 385" stroke="#2a5070" stroke-width="1" fill="none" opacity="0.3"/>
+  <!-- Stars -->
+  <circle cx="60" cy="60" r="1" fill="white" opacity="0.8"/>
+  <circle cx="290" cy="40" r="1.5" fill="white" opacity="0.9"/>
+  <circle cx="110" cy="100" r="1" fill="white" opacity="0.7"/>
+  <circle cx="270" cy="130" r="1" fill="white" opacity="0.8"/>
+  <circle cx="30" cy="160" r="1" fill="white" opacity="0.6"/>
+  <circle cx="320" cy="200" r="1" fill="white" opacity="0.7"/>
+</svg>

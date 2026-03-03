@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+:root {
+  /* Night sky palette */
+  --bg-deep: #060918;
+  --bg-mid: #0a0e27;
+  --bg-card: #0f1535;
+  --bg-card-hover: #141b45;
+  --accent-silver: #c8d8f0;
+  --accent-gold: #f0d68c;
+  --accent-blue: #4a9eff;
+  --text-primary: #e8eef8;
+  --text-secondary: #8fa8d0;
+  --text-muted: #4a6080;
+  --border-subtle: rgba(200, 216, 240, 0.1);
+  --star-color: rgba(255, 255, 255, 0.8);
+}
+
+@theme inline {
+  --color-background: var(--bg-deep);
+  --color-foreground: var(--text-primary);
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Fira Code", "Cascadia Code", ui-monospace, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: "Inter", system-ui, -apple-system,
+    "Segoe UI", "Noto Sans CJK JP", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* CJK characters (Japanese "星野") */
+:lang(en) {
+  font-family: "Inter", system-ui, -apple-system,
+    "Segoe UI", "Noto Sans CJK JP", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Star canvas ── */
+#star-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Glass card ── */
+.glass-card {
+  background: rgba(15, 21, 53, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+}
+
+/* ── Masonry gallery ── */
+.masonry-grid {
+  columns: 1;
+  column-gap: 1rem;
+}
+@media (min-width: 640px) {
+  .masonry-grid {
+    columns: 2;
+  }
+}
+@media (min-width: 1024px) {
+  .masonry-grid {
+    columns: 3;
+  }
+}
+@media (min-width: 1280px) {
+  .masonry-grid {
+    columns: 4;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-silver), var(--accent-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glow effects ── */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(74, 158, 255, 0.15);
+}
+.glow-gold {
+  box-shadow: 0 0 30px rgba(240, 214, 140, 0.1);
+}
+
+/* ── Blog post prose ── */
+.prose-hoshino h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 2rem 0 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
+}
+.prose-hoshino h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent-silver);
+  margin: 1.5rem 0 0.75rem;
+}
+.prose-hoshino p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+.prose-hoshino a {
+  color: var(--accent-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-hoshino a:hover {
+  color: var(--accent-gold);
+}
+.prose-hoshino ul,
+.prose-hoshino ol {
+  color: var(--text-secondary);
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.8;
+}
+.prose-hoshino li {
+  margin-bottom: 0.25rem;
+}
+.prose-hoshino blockquote {
+  border-left: 3px solid var(--accent-gold);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: var(--text-muted);
+  font-style: italic;
+}
+.prose-hoshino code {
+  background: var(--bg-card);
+  color: var(--accent-gold);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-family: "Fira Code", "Cascadia Code", ui-monospace, monospace;
+  font-size: 0.875em;
+}
+.prose-hoshino pre {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+}
+.prose-hoshino pre code {
+  background: none;
+  padding: 0;
+}
+.prose-hoshino img {
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+}
+.prose-hoshino table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+}
+.prose-hoshino th {
+  background: var(--bg-card);
+  color: var(--accent-silver);
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  text-align: left;
+  border: 1px solid var(--border-subtle);
+}
+.prose-hoshino td {
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-subtle);
+}
+.prose-hoshino tr:nth-child(even) td {
+  background: rgba(15, 21, 53, 0.4);
+}
+

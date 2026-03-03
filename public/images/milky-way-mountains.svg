@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4000" height="2667" viewBox="0 0 800 533">
+  <defs>
+    <radialGradient id="gal" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#5a4fcf" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#1a1050" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#060918" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="core" cx="50%" cy="45%" r="15%">
+      <stop offset="0%" stop-color="#f0d68c" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#5a4fcf" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="533" fill="#060918"/>
+  <rect width="800" height="533" fill="url(#gal)"/>
+  <!-- Milky Way arc -->
+  <ellipse cx="400" cy="200" rx="300" ry="80" fill="#3d2b8a" opacity="0.5" transform="rotate(-20,400,200)"/>
+  <ellipse cx="400" cy="200" rx="200" ry="50" fill="#6b5cbf" opacity="0.4" transform="rotate(-20,400,200)"/>
+  <rect x="400" y="160" width="80" height="40" rx="20" fill="url(#core)" transform="rotate(-20,400,200)"/>
+  <!-- Stars -->
+  <circle cx="100" cy="80" r="1.5" fill="white" opacity="0.9"/>
+  <circle cx="200" cy="50" r="1" fill="white" opacity="0.8"/>
+  <circle cx="350" cy="30" r="1.5" fill="white" opacity="0.9"/>
+  <circle cx="500" cy="60" r="1" fill="white" opacity="0.7"/>
+  <circle cx="650" cy="40" r="1.5" fill="white" opacity="0.9"/>
+  <circle cx="750" cy="90" r="1" fill="white" opacity="0.8"/>
+  <circle cx="150" cy="150" r="1" fill="white" opacity="0.6"/>
+  <circle cx="600" cy="120" r="1.5" fill="white" opacity="0.9"/>
+  <circle cx="450" cy="90" r="1" fill="white" opacity="0.7"/>
+  <circle cx="700" cy="160" r="1" fill="white" opacity="0.6"/>
+  <circle cx="50" cy="200" r="1" fill="white" opacity="0.7"/>
+  <circle cx="300" cy="110" r="1.5" fill="white" opacity="0.9"/>
+  <circle cx="550" cy="180" r="1" fill="white" opacity="0.8"/>
+  <!-- Mountains silhouette -->
+  <polygon points="0,533 0,380 80,300 160,360 240,280 320,340 400,260 480,310 560,250 640,320 720,270 800,350 800,533" fill="#060918"/>
+  <!-- Snow caps -->
+  <polygon points="240,280 255,295 225,295" fill="#8fa8d0" opacity="0.6"/>
+  <polygon points="400,260 415,277 385,277" fill="#8fa8d0" opacity="0.6"/>
+  <polygon points="560,250 575,268 545,268" fill="#8fa8d0" opacity="0.6"/>
+</svg>
