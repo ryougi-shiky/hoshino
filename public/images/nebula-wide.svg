@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4500" height="3000" viewBox="0 0 750 500">
+  <defs>
+    <radialGradient id="neb1" cx="50%" cy="60%" r="40%">
+      <stop offset="0%" stop-color="#ff6040" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#8833cc" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#060918" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="neb2" cx="45%" cy="55%" r="25%">
+      <stop offset="0%" stop-color="#40a0ff" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#060918" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="750" height="500" fill="#060918"/>
+  <!-- Nebula glow -->
+  <ellipse cx="375" cy="280" rx="200" ry="150" fill="url(#neb1)"/>
+  <ellipse cx="340" cy="260" rx="120" ry="90" fill="url(#neb2)"/>
+  <!-- Orion's belt stars -->
+  <circle cx="310" cy="220" r="3" fill="white" opacity="0.95"/>
+  <circle cx="375" cy="210" r="3" fill="white" opacity="0.95"/>
+  <circle cx="440" cy="225" r="3" fill="white" opacity="0.95"/>
+  <!-- Rigel -->
+  <circle cx="460" cy="340" r="4" fill="#aaccff" opacity="0.95"/>
+  <!-- Betelgeuse -->
+  <circle cx="300" cy="160" r="4" fill="#ffaa66" opacity="0.9"/>
+  <!-- M42 core -->
+  <circle cx="375" cy="280" r="8" fill="white" opacity="0.7"/>
+  <circle cx="375" cy="280" r="4" fill="#ffeecc" opacity="0.9"/>
+  <!-- Stars -->
+  <circle cx="100" cy="80" r="1" fill="white" opacity="0.8"/>
+  <circle cx="200" cy="50" r="1.5" fill="white" opacity="0.9"/>
+  <circle cx="600" cy="60" r="1" fill="white" opacity="0.8"/>
+  <circle cx="680" cy="120" r="1.5" fill="white" opacity="0.9"/>
+  <circle cx="50" cy="200" r="1" fill="white" opacity="0.7"/>
+  <circle cx="700" cy="300" r="1" fill="white" opacity="0.8"/>
+  <circle cx="150" cy="380" r="1" fill="white" opacity="0.7"/>
+  <circle cx="600" cy="400" r="1.5" fill="white" opacity="0.9"/>
+</svg>
