@@ -1,10 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Enable static export for GitHub Pages / CDN deployment.
-  // Comment out the `output` line if you are deploying to Vercel
-  // (Vercel supports the full Next.js runtime natively).
-  // output: "export",
+  // "standalone" bundles a minimal Node.js server into .next/standalone — used
+  // by the Dockerfile and compatible with Vercel (which ignores this setting
+  // and uses its own runtime automatically).
+  //
+  // ⚠️  GitHub Pages / static CDN: change this value to "export" before
+  //     running `npm run build`.  All dynamic routes already expose
+  //     generateStaticParams(), so the static build will work out of the box.
+  output: "standalone",
 
   images: {
     // Allow SVG images (used for placeholder astrophotography shots).
