@@ -18,6 +18,8 @@ A beautifully crafted photography blog theme inspired by the Japanese word **星
 
 ## 🚀 Getting Started
 
+### Option 1 — Local (Node.js)
+
 ```bash
 # 1. Install dependencies
 npm install
@@ -28,6 +30,18 @@ npm run dev
 
 # 3. Build for production
 npm run build
+```
+
+### Option 2 — Docker
+
+```bash
+# Build and run with Docker Compose (recommended)
+docker compose up --build
+# → http://localhost:3000
+
+# Or build and run manually
+docker build -t hoshino .
+docker run -p 3000:3000 hoshino
 ```
 
 ---
@@ -115,19 +129,34 @@ The file name (without `.md`) becomes the URL slug, e.g. `content/posts/my-post-
 
 ## 🌐 Deployment
 
+### Docker (self-hosted)
+
+Run the app as a container on any server or cloud VM:
+
+```bash
+docker compose up --build -d
+```
+
+The app listens on port **3000**.  Map it to port 80/443 with a reverse proxy (e.g. Nginx or Caddy) and a TLS certificate for production use.
+
+> **GitHub Pages and Vercel do not run Docker containers directly.**
+> GitHub Pages hosts only static files, and Vercel manages its own serverless runtime.
+> Use the Docker option when self-hosting on a VPS or in a Kubernetes cluster.
+
 ### Vercel (recommended — zero config)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
 
 Push to GitHub and connect the repo in the Vercel dashboard. Done.
+The `output: "standalone"` setting in `next.config.ts` is ignored by Vercel — it uses its own optimized runtime automatically.
 
 ### GitHub Pages (static export)
 
-1. In `next.config.ts`, uncomment `output: "export"`.
+1. In `next.config.ts`, change `output` from `"standalone"` to `"export"`.
 2. Run `npm run build` — static files are emitted to `out/`.
 3. Push the `out/` directory to your `gh-pages` branch, or configure GitHub Actions.
 
-> **Note:** when using static export, remove the `output: "export"` comment marker and ensure all dynamic routes have `generateStaticParams()` defined (they already do).
+> **Note:** when using static export, ensure all dynamic routes have `generateStaticParams()` defined (they already do).
 
 ### Netlify
 
