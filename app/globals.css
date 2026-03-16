@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════════════
+   BASE — Night sky palette (shared across all themes)
+   ═══════════════════════════════════════════════════════════════ */
 :root {
-  /* Night sky palette */
   --bg-deep: #060918;
   --bg-mid: #0a0e27;
   --bg-card: #0f1535;
@@ -14,6 +16,100 @@
   --text-muted: #4a6080;
   --border-subtle: rgba(200, 216, 240, 0.1);
   --star-color: rgba(255, 255, 255, 0.8);
+
+  /* ── Glass / theme variables (Monochrome default) ── */
+  --glass-bg: rgba(10, 14, 39, 0.62);
+  --glass-border: rgba(200, 216, 240, 0.13);
+  --glass-highlight: rgba(255, 255, 255, 0.04);
+  --glass-shadow: rgba(0, 0, 0, 0.45);
+  --nav-bg: rgba(6, 9, 24, 0.72);
+  --nav-border: rgba(200, 216, 240, 0.10);
+  --theme-primary: #4a9eff;
+  --theme-secondary: #c8d8f0;
+  --photo-hover-shadow: rgba(74, 158, 255, 0.18);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   THEME PALETTES
+   Each theme only tints the glass panels — photos stay dominant.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Arctic — white / ice-blue glass */
+[data-theme="arctic"] {
+  --glass-bg: rgba(180, 225, 255, 0.08);
+  --glass-border: rgba(200, 235, 255, 0.20);
+  --glass-highlight: rgba(220, 245, 255, 0.07);
+  --glass-shadow: rgba(0, 20, 50, 0.50);
+  --nav-bg: rgba(5, 15, 35, 0.72);
+  --nav-border: rgba(160, 215, 255, 0.15);
+  --theme-primary: #62ccff;
+  --theme-secondary: #b0deff;
+  --photo-hover-shadow: rgba(98, 204, 255, 0.22);
+}
+
+/* Ocean — cyan / teal glass */
+[data-theme="ocean"] {
+  --glass-bg: rgba(0, 180, 180, 0.08);
+  --glass-border: rgba(0, 210, 200, 0.18);
+  --glass-highlight: rgba(0, 240, 220, 0.05);
+  --glass-shadow: rgba(0, 30, 40, 0.50);
+  --nav-bg: rgba(0, 20, 30, 0.75);
+  --nav-border: rgba(0, 200, 190, 0.15);
+  --theme-primary: #00c8be;
+  --theme-secondary: #7deae4;
+  --photo-hover-shadow: rgba(0, 200, 190, 0.20);
+}
+
+/* Sunset — orange / warm amber glass */
+[data-theme="sunset"] {
+  --glass-bg: rgba(200, 90, 20, 0.08);
+  --glass-border: rgba(240, 140, 60, 0.18);
+  --glass-highlight: rgba(255, 180, 80, 0.05);
+  --glass-shadow: rgba(40, 10, 0, 0.50);
+  --nav-bg: rgba(25, 8, 0, 0.75);
+  --nav-border: rgba(240, 130, 50, 0.15);
+  --theme-primary: #f07830;
+  --theme-secondary: #f0c878;
+  --photo-hover-shadow: rgba(240, 120, 48, 0.22);
+}
+
+/* Lavender — purple glass */
+[data-theme="lavender"] {
+  --glass-bg: rgba(140, 80, 220, 0.08);
+  --glass-border: rgba(180, 120, 255, 0.18);
+  --glass-highlight: rgba(200, 160, 255, 0.05);
+  --glass-shadow: rgba(20, 5, 50, 0.50);
+  --nav-bg: rgba(12, 4, 30, 0.75);
+  --nav-border: rgba(170, 110, 255, 0.15);
+  --theme-primary: #b07aff;
+  --theme-secondary: #d4b0ff;
+  --photo-hover-shadow: rgba(160, 100, 255, 0.22);
+}
+
+/* Emerald — green glass */
+[data-theme="emerald"] {
+  --glass-bg: rgba(20, 160, 80, 0.08);
+  --glass-border: rgba(40, 200, 100, 0.18);
+  --glass-highlight: rgba(80, 220, 130, 0.05);
+  --glass-shadow: rgba(0, 25, 10, 0.50);
+  --nav-bg: rgba(0, 18, 8, 0.75);
+  --nav-border: rgba(40, 190, 100, 0.15);
+  --theme-primary: #28c864;
+  --theme-secondary: #80e4a8;
+  --photo-hover-shadow: rgba(40, 200, 100, 0.22);
+}
+
+/* Monochrome — explicit selector (also the :root default) */
+[data-theme="monochrome"] {
+  --glass-bg: rgba(10, 14, 39, 0.62);
+  --glass-border: rgba(200, 216, 240, 0.13);
+  --glass-highlight: rgba(255, 255, 255, 0.04);
+  --glass-shadow: rgba(0, 0, 0, 0.45);
+  --nav-bg: rgba(6, 9, 24, 0.72);
+  --nav-border: rgba(200, 216, 240, 0.10);
+  --theme-primary: #4a9eff;
+  --theme-secondary: #c8d8f0;
+  --photo-hover-shadow: rgba(74, 158, 255, 0.18);
 }
 
 @theme inline {
@@ -87,17 +183,29 @@ a {
 
 /* ── Glass card ── */
 .glass-card {
-  background: rgba(15, 21, 53, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  box-shadow:
+    0 4px 24px var(--glass-shadow),
+    inset 0 1px 0 var(--glass-highlight);
+}
+
+/* ── Frosted-glass navigation bar ── */
+.nav-glass {
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.30);
 }
 
 /* ── Masonry gallery ── */
 .masonry-grid {
   columns: 1;
-  column-gap: 1rem;
+  column-gap: 1.25rem;
 }
 @media (min-width: 640px) {
   .masonry-grid {
@@ -117,8 +225,54 @@ a {
 
 .masonry-item {
   break-inside: avoid;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   display: block;
+}
+
+/* ── Photo card ── */
+.photo-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  /* GPU-friendly composite layer */
+  will-change: transform;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+.photo-card:hover {
+  transform: scale(1.04);
+  box-shadow:
+    0 12px 40px var(--photo-hover-shadow),
+    0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Button glow effect ── */
+.btn-primary {
+  transition:
+    opacity 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+.btn-primary:hover {
+  opacity: 0.88;
+  box-shadow: 0 0 18px color-mix(in srgb, var(--theme-primary) 45%, transparent);
+  transform: scale(1.03);
+}
+
+.btn-outline {
+  transition:
+    border-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+.btn-outline:hover {
+  border-color: var(--theme-secondary);
+  color: var(--text-primary);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--theme-secondary) 25%, transparent);
+  transform: scale(1.03);
 }
 
 /* ── Gradient text ── */
