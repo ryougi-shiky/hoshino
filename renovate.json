@@ -3,39 +3,5 @@
   "extends": [
     "config:recommended"
   ],
-  "schedule": ["before 6am on Monday"],
-  "labels": ["dependencies"],
-  "packageRules": [
-    {
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchCurrentVersion": "!/^0/",
-      "automerge": true
-    },
-    {
-      "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchCurrentVersion": "!/^0/",
-      "automerge": true
-    },
-    {
-      "groupName": "Next.js",
-      "matchPackageNames": ["next", "eslint-config-next"]
-    },
-    {
-      "groupName": "React",
-      "matchPackageNames": ["react", "react-dom", "@types/react", "@types/react-dom"]
-    },
-    {
-      "groupName": "Tailwind CSS",
-      "matchPackageNames": ["tailwindcss", "@tailwindcss/postcss"]
-    },
-    {
-      "groupName": "TypeScript and types",
-      "matchPackageNames": ["typescript", "@types/node"]
-    },
-    {
-      "groupName": "Playwright",
-      "matchPackageNames": ["@playwright/test"]
-    }
-  ]
+  "labels": ["dependencies"]
 }
