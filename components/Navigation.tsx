@@ -13,12 +13,14 @@ const navLinks = [
 
 /** Each entry: [theme id, swatch color, accessible label] */
 const THEMES: [Theme, string, string][] = [
-  ["monochrome", "#4a9eff", "Monochrome"],
+  ["starfield",  "#4a9eff", "Starfield ✦"],
+  ["monochrome", "#909098", "Monochrome"],
   ["arctic",     "#62ccff", "Arctic"],
   ["ocean",      "#00c8be", "Ocean"],
   ["sunset",     "#f07830", "Sunset"],
   ["lavender",   "#b07aff", "Lavender"],
   ["emerald",    "#28c864", "Emerald"],
+  ["white",      "#e8e8f0", "White"],
 ];
 
 export default function Navigation() {
@@ -26,7 +28,7 @@ export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
   // Lazy initializer — reads persisted theme once on first render (client-only)
   const [activeTheme, setActiveTheme] = useState<Theme>(
-    () => (typeof window !== "undefined" ? getStoredTheme() : "monochrome")
+    () => (typeof window !== "undefined" ? getStoredTheme() : "starfield")
   );
   const [themePickerOpen, setThemePickerOpen] = useState(false);
 
