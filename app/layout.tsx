@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import StarBackground from "@/components/StarBackground";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
@@ -25,7 +24,6 @@ export default function RootLayout({
       <body className="antialiased">
         {/* Restores the chosen color theme from localStorage on every page load */}
         <ThemeProvider />
-        <StarBackground />
         <div className="relative z-10 flex flex-col min-h-screen">
           <Navigation />
           <main className="flex-1">{children}</main>

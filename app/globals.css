@@ -1,31 +1,30 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   BASE — Night sky palette (shared across all themes)
+   BASE — Neutral dark palette (photo-agnostic, any genre works)
    ═══════════════════════════════════════════════════════════════ */
 :root {
-  --bg-deep: #060918;
-  --bg-mid: #0a0e27;
-  --bg-card: #0f1535;
-  --bg-card-hover: #141b45;
-  --accent-silver: #c8d8f0;
+  --bg-deep: #0c0c0e;
+  --bg-mid: #111113;
+  --bg-card: #18181c;
+  --bg-card-hover: #1e1e24;
+  --accent-silver: #c4c8d4;
   --accent-gold: #f0d68c;
   --accent-blue: #4a9eff;
-  --text-primary: #e8eef8;
-  --text-secondary: #8fa8d0;
-  --text-muted: #4a6080;
-  --border-subtle: rgba(200, 216, 240, 0.1);
-  --star-color: rgba(255, 255, 255, 0.8);
+  --text-primary: #e8e8ec;
+  --text-secondary: #909098;
+  --text-muted: #484850;
+  --border-subtle: rgba(200, 200, 220, 0.1);
 
   /* ── Glass / theme variables (Monochrome default) ── */
-  --glass-bg: rgba(10, 14, 39, 0.62);
-  --glass-border: rgba(200, 216, 240, 0.13);
+  --glass-bg: rgba(18, 18, 22, 0.65);
+  --glass-border: rgba(200, 200, 220, 0.13);
   --glass-highlight: rgba(255, 255, 255, 0.04);
   --glass-shadow: rgba(0, 0, 0, 0.45);
-  --nav-bg: rgba(6, 9, 24, 0.72);
-  --nav-border: rgba(200, 216, 240, 0.10);
+  --nav-bg: rgba(12, 12, 14, 0.78);
+  --nav-border: rgba(200, 200, 220, 0.10);
   --theme-primary: #4a9eff;
-  --theme-secondary: #c8d8f0;
+  --theme-secondary: #c4c8d4;
   --photo-hover-shadow: rgba(74, 158, 255, 0.18);
 }
 
@@ -101,14 +100,14 @@
 
 /* Monochrome — explicit selector (also the :root default) */
 [data-theme="monochrome"] {
-  --glass-bg: rgba(10, 14, 39, 0.62);
-  --glass-border: rgba(200, 216, 240, 0.13);
+  --glass-bg: rgba(18, 18, 22, 0.65);
+  --glass-border: rgba(200, 200, 220, 0.13);
   --glass-highlight: rgba(255, 255, 255, 0.04);
   --glass-shadow: rgba(0, 0, 0, 0.45);
-  --nav-bg: rgba(6, 9, 24, 0.72);
-  --nav-border: rgba(200, 216, 240, 0.10);
+  --nav-bg: rgba(12, 12, 14, 0.78);
+  --nav-border: rgba(200, 200, 220, 0.10);
   --theme-primary: #4a9eff;
-  --theme-secondary: #c8d8f0;
+  --theme-secondary: #c4c8d4;
   --photo-hover-shadow: rgba(74, 158, 255, 0.18);
 }
 
@@ -171,14 +170,6 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-/* ── Star canvas ── */
-#star-canvas {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
 }
 
 /* ── Glass card ── */
@@ -382,6 +373,6 @@ a {
   border: 1px solid var(--border-subtle);
 }
 .prose-hoshino tr:nth-child(even) td {
-  background: rgba(15, 21, 53, 0.4);
+  background: color-mix(in srgb, var(--bg-card) 40%, transparent);
 }
 
