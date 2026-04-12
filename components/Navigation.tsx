@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { applyTheme, getStoredTheme, type Theme } from "@/components/ThemeProvider";
 
 const navLinks = [
@@ -11,16 +11,21 @@ const navLinks = [
   { href: "/blog", label: "Blog" },
 ];
 
-/** Each entry: [theme id, swatch color, accessible label] */
-const THEMES: [Theme, string, string][] = [
-  ["starfield",  "#4a9eff", "Starfield ✦"],
-  ["monochrome", "#909098", "Monochrome"],
-  ["arctic",     "#62ccff", "Arctic"],
-  ["ocean",      "#00c8be", "Ocean"],
-  ["sunset",     "#f07830", "Sunset"],
-  ["lavender",   "#b07aff", "Lavender"],
-  ["emerald",    "#28c864", "Emerald"],
-  ["white",      "#e8e8f0", "White"],
+interface ThemeOption {
+  id: Theme;
+  swatch: string;
+  label: string;
+}
+
+const THEMES: ThemeOption[] = [
+  { id: "starfield",  swatch: "#4a9eff", label: "Starfield ✦" },
+  { id: "monochrome", swatch: "#909098", label: "Monochrome" },
+  { id: "arctic",     swatch: "#62ccff", label: "Arctic" },
+  { id: "ocean",      swatch: "#00c8be", label: "Ocean" },
+  { id: "sunset",     swatch: "#f07830", label: "Sunset" },
+  { id: "lavender",   swatch: "#b07aff", label: "Lavender" },
+  { id: "emerald",    swatch: "#28c864", label: "Emerald" },
+  { id: "white",      swatch: "#e8e8f0", label: "White" },
 ];
 
 export default function Navigation() {
@@ -31,12 +36,26 @@ export default function Navigation() {
     () => (typeof window !== "undefined" ? getStoredTheme() : "starfield")
   );
   const [themePickerOpen, setThemePickerOpen] = useState(false);
+  const themePickerRef = useRef<HTMLDivElement>(null);
+
+  // Close theme picker when clicking outside of it
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (themePickerRef.current && !themePickerRef.current.contains(e.target as Node)) {
+        setThemePickerOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   function handleTheme(theme: Theme) {
     applyTheme(theme);
     setActiveTheme(theme);
     setThemePickerOpen(false);
   }
+
+  const activeSwatchColor = THEMES.find((t) => t.id === activeTheme)?.swatch ?? "#4a9eff";
 
   return (
     <nav className="nav-glass sticky top-0 z-50 w-full">
@@ -73,7 +92,7 @@ export default function Navigation() {
         {/* Right controls */}
         <div className="flex items-center gap-3">
           {/* Theme picker */}
-          <div className="relative">
+          <div className="relative" ref={themePickerRef}>
             <button
               onClick={() => setThemePickerOpen((v) => !v)}
               aria-label="Choose color theme"
@@ -81,26 +100,26 @@ export default function Navigation() {
               title="Choose color theme"
               className="w-7 h-7 rounded-full border-2 transition-all duration-150 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[var(--theme-primary)] focus:ring-offset-1 focus:ring-offset-transparent"
               style={{
-                background: THEMES.find(([t]) => t === activeTheme)?.[1] ?? "#4a9eff",
+                background: activeSwatchColor,
                 borderColor: "rgba(255,255,255,0.25)",
               }}
             />
             {themePickerOpen && (
               <div className="absolute right-0 mt-2 glass-card p-3 flex flex-col gap-2 min-w-[9rem]">
                 <p className="text-xs text-[var(--text-muted)] mb-1 tracking-widest uppercase">Theme</p>
-                {THEMES.map(([theme, color, label]) => (
+                {THEMES.map(({ id, swatch, label }) => (
                   <button
-                    key={theme}
-                    onClick={() => handleTheme(theme)}
+                    key={id}
+                    onClick={() => handleTheme(id)}
                     className={`flex items-center gap-2.5 text-xs px-2 py-1 rounded-lg transition-all duration-150 hover:scale-105 w-full text-left ${
-                      activeTheme === theme
+                      activeTheme === id
                         ? "bg-[var(--glass-highlight)] text-[var(--text-primary)]"
                         : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--glass-highlight)]"
                     }`}
                   >
                     <span
                       className="w-3.5 h-3.5 rounded-full shrink-0"
-                      style={{ background: color }}
+                      style={{ background: swatch }}
                     />
                     {label}
                   </button>

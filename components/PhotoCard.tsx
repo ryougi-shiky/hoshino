@@ -18,9 +18,9 @@ export default function PhotoCard({
   const isPortrait = aspectRatio < 0.85;
   const isPanoramic = aspectRatio > 1.8;
 
-  const content = (
-    // photo-card class handles scale + shadow hover via CSS
-    <article className="photo-card">
+  const card = (
+    // photo-card handles scale + shadow hover; group drives overlay animations
+    <article className="photo-card group">
       {/* Image container — preserves original aspect ratio */}
       <div
         className={`relative w-full overflow-hidden ${
@@ -74,11 +74,11 @@ export default function PhotoCard({
     </article>
   );
 
-  if (!linkable) return content;
+  if (!linkable) return <div className="masonry-item">{card}</div>;
 
   return (
-    <Link href={`/photos/${photo.id}`} className="block masonry-item group">
-      {content}
+    <Link href={`/photos/${photo.id}`} className="block masonry-item">
+      {card}
     </Link>
   );
 }

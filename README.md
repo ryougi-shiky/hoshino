@@ -1,6 +1,6 @@
-# 星野 Hoshino — Night Sky Photography Blog
+# 星野 Hoshino — Photography Blog
 
-A beautifully crafted photography blog theme inspired by the Japanese word **星野** (*hoshino* — "field of stars"). Built for astrophotographers who want an easy-to-deploy, gallery-first blog with a stunning night-sky aesthetic.
+A beautifully crafted photography blog theme inspired by the Japanese word **星野** (*hoshino* — "field of stars"). Built for photographers who want an easy-to-deploy, gallery-first blog with an elegant, themeable UI.
 
 ---
 
@@ -9,8 +9,9 @@ A beautifully crafted photography blog theme inspired by the Japanese word **星
 - **Masonry gallery** — photos auto-arrange by aspect ratio (landscape, portrait, panoramic)
 - **Photo detail pages** — title, description, GPS location, date, tags, and prev/next navigation
 - **Markdown blog posts** — write posts in `.md` with frontmatter; full GFM support (tables, lists, blockquotes, code)
-- **Animated star background** — canvas-based twinkle animation across all pages
-- **Night sky theme** — deep navy/black palette with silver, gold and blue accents
+- **8 colour themes** — glassmorphism panels that can be tinted to match your photo collection; persists to `localStorage`
+- **Glassmorphism UI** — frosted-glass navigation bar and cards with `backdrop-filter` blur
+- **Starfield animation** — twinkling star canvas active only in the Starfield theme; automatically stops for all other themes
 - **Fully static** — runs on GitHub Pages, Vercel, Netlify, or any CDN
 - **Zero-JS fallback** — all content is server-rendered; the star animation is purely progressive enhancement
 
@@ -59,11 +60,13 @@ hoshino/
 │       └── [slug]/       # Individual blog post (rendered from Markdown)
 │
 ├── components/
-│   ├── StarBackground.tsx   # Animated canvas star field
-│   ├── Navigation.tsx       # Top nav bar (responsive)
-│   ├── GalleryGrid.tsx      # Masonry grid wrapper
-│   ├── PhotoCard.tsx        # Single photo card with hover effects
-│   ├── PostCard.tsx         # Blog post summary card
+│   ├── Navigation.tsx            # Sticky frosted-glass nav with theme picker
+│   ├── ThemeProvider.tsx         # Restores chosen theme from localStorage on load
+│   ├── ConditionalStarBackground.tsx  # Mounts star canvas only for Starfield theme
+│   ├── StarBackground.tsx        # Canvas-based twinkling star animation
+│   ├── GalleryGrid.tsx           # Masonry grid wrapper
+│   ├── PhotoCard.tsx             # Photo card with hover overlay (title, location, tags)
+│   ├── PostCard.tsx              # Blog post summary card
 │   └── Footer.tsx
 │
 ├── lib/
@@ -166,17 +169,35 @@ Connect the GitHub repo, set the build command to `npm run build` and publish di
 
 ## 🎨 Theming
 
-All colours are CSS custom properties in `app/globals.css`:
+Click the coloured swatch button in the top-right navigation to choose from **8 built-in themes**. The selection is saved to `localStorage` and restored automatically on every page load.
 
-| Variable | Default | Purpose |
-|---|---|---|
-| `--bg-deep` | `#060918` | Page background |
-| `--bg-card` | `#0f1535` | Card backgrounds |
-| `--accent-silver` | `#c8d8f0` | Primary accent |
-| `--accent-gold` | `#f0d68c` | Highlight / labels |
-| `--accent-blue` | `#4a9eff` | Tags / links / CTA |
-| `--text-primary` | `#e8eef8` | Body text |
-| `--text-secondary` | `#8fa8d0` | Muted body text |
+| Theme | Body background | Glass tint | Notes |
+|---|---|---|---|
+| **Starfield ✦** | `#060918` navy | Blue | Default — twinkling star canvas |
+| **Monochrome** | `#0c0c0e` near-black | Neutral | Stars off — works with any photo genre |
+| **Arctic** | `#060918` navy | Ice blue | |
+| **Ocean** | `#060918` navy | Cyan / teal | |
+| **Sunset** | `#060918` navy | Amber / orange | |
+| **Lavender** | `#060918` navy | Purple | |
+| **Emerald** | `#060918` navy | Green | |
+| **White** | `#f8f8fc` white | White glass | Full light mode |
+
+### How it works
+
+Themes are implemented with CSS `[data-theme]` attribute selectors on `<html>`. Each theme overrides a set of CSS custom properties that control only glass panels — photos are never tinted.
+
+Key CSS variables:
+
+| Variable | Purpose |
+|---|---|
+| `--glass-bg` | Glass panel fill |
+| `--glass-border` | Glass panel border |
+| `--theme-primary` | Accent colour (buttons, hover glows) |
+| `--nav-bg` | Navigation bar fill |
+| `--bg-deep` | Page background (overridden in Monochrome / White) |
+| `--text-primary` | Body text (overridden in White) |
+
+To add a custom theme, append a new `[data-theme="my-theme"]` block in `app/globals.css`, then add a matching entry to the `THEMES` array in `components/Navigation.tsx` and the `Theme` union type in `components/ThemeProvider.tsx`.
 
 ---
 
@@ -186,10 +207,10 @@ All colours are CSS custom properties in `app/globals.css`:
 |---|---|
 | Framework | [Next.js 16](https://nextjs.org) (App Router, SSG) |
 | Language | TypeScript |
-| Styling | [Tailwind CSS v4](https://tailwindcss.com) |
+| Styling | [Tailwind CSS v4](https://tailwindcss.com) + custom CSS variables |
 | Markdown | [remark](https://github.com/remarkjs/remark) + [remark-gfm](https://github.com/remarkjs/remark-gfm) |
 | Images | Next.js `<Image>` with SVG placeholder support |
-| Animation | Canvas API (star field) |
+| Animation | Canvas API (conditional star field for Starfield theme) |
 | Deployment | Vercel / GitHub Pages / Netlify |
 
 ---

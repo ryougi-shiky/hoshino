@@ -37,9 +37,7 @@ export function applyTheme(theme: Theme) {
 export default function ThemeProvider() {
   useEffect(() => {
     // Apply the persisted theme as early as possible after hydration
-    const saved = getStoredTheme();
-    document.documentElement.setAttribute("data-theme", saved);
-    window.dispatchEvent(new Event("hoshino-theme-change"));
+    applyTheme(getStoredTheme());
   }, []);
 
   return null;

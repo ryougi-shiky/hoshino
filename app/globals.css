@@ -187,13 +187,6 @@ body {
   overflow-x: hidden;
 }
 
-/* CJK characters (Japanese "星野") */
-:lang(en) {
-  font-family: "Inter", system-ui, -apple-system,
-    "Segoe UI", "Noto Sans CJK JP", "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
-}
-
 /* ── Scrollbar ── */
 ::-webkit-scrollbar {
   width: 6px;
@@ -334,14 +327,6 @@ a {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-/* ── Glow effects ── */
-.glow-blue {
-  box-shadow: 0 0 20px rgba(74, 158, 255, 0.15);
-}
-.glow-gold {
-  box-shadow: 0 0 30px rgba(240, 214, 140, 0.1);
 }
 
 /* ── Blog post prose ── */
