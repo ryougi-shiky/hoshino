@@ -18,9 +18,10 @@ export default function PhotoCard({
   const isPortrait = aspectRatio < 0.85;
   const isPanoramic = aspectRatio > 1.8;
 
-  const content = (
-    <article className="group relative overflow-hidden rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] cursor-pointer transition-all duration-300 hover:border-[var(--accent-silver)] hover:shadow-lg hover:shadow-[rgba(74,158,255,0.1)] hover:-translate-y-0.5">
-      {/* Image */}
+  const card = (
+    // photo-card handles scale + shadow hover; group drives overlay animations
+    <article className="photo-card group">
+      {/* Image container — preserves original aspect ratio */}
       <div
         className={`relative w-full overflow-hidden ${
           isPortrait ? "pb-[133%]" : isPanoramic ? "pb-[50%]" : "pb-[66%]"
@@ -31,51 +32,53 @@ export default function PhotoCard({
           alt={photo.title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover"
           priority={priority}
         />
-        {/* Gradient overlay on hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-deep)] via-transparent to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300" />
-        {/* Tags overlay */}
+
+        {/* Gradient overlay — slides in on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+        {/* Metadata overlay — appears on hover */}
+        <div className="absolute inset-x-0 bottom-0 px-4 py-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+          <h3 className="text-sm font-semibold text-white leading-snug mb-0.5 drop-shadow line-clamp-1">
+            {photo.title}
+          </h3>
+          <div className="flex items-center gap-1 text-xs text-white/70">
+            <svg
+              className="w-3 h-3 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+              <circle cx="12" cy="9" r="2.5" />
+            </svg>
+            <span className="truncate">{photo.location}</span>
+          </div>
+        </div>
+
+        {/* Tag pills — top-left, visible on hover */}
         <div className="absolute top-3 left-3 flex flex-wrap gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           {photo.tags.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="text-xs px-2 py-0.5 rounded-full bg-[rgba(6,9,24,0.8)] text-[var(--accent-gold)] border border-[var(--accent-gold)] border-opacity-30"
+              className="text-xs px-2 py-0.5 rounded-full bg-black/60 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30 backdrop-blur-sm"
             >
               {tag}
             </span>
           ))}
         </div>
       </div>
-
-      {/* Metadata */}
-      <div className="px-4 py-3">
-        <h3 className="text-sm font-semibold text-[var(--text-primary)] leading-snug mb-1 line-clamp-1">
-          {photo.title}
-        </h3>
-        <div className="flex items-center gap-1 text-xs text-[var(--text-muted)]">
-          <svg
-            className="w-3 h-3 shrink-0"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-            <circle cx="12" cy="9" r="2.5" />
-          </svg>
-          <span className="truncate">{photo.location}</span>
-        </div>
-      </div>
     </article>
   );
 
-  if (!linkable) return content;
+  if (!linkable) return <div className="masonry-item">{card}</div>;
 
   return (
     <Link href={`/photos/${photo.id}`} className="block masonry-item">
-      {content}
+      {card}
     </Link>
   );
 }

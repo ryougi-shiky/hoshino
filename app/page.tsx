@@ -30,13 +30,13 @@ export default function HomePage() {
         <div className="flex flex-wrap gap-4 justify-center pt-2">
           <Link
             href="/gallery"
-            className="px-6 py-2.5 rounded-full bg-[var(--accent-blue)] text-white text-sm font-medium hover:opacity-80 transition-all"
+            className="btn-primary px-6 py-2.5 rounded-full bg-[var(--accent-blue)] text-white text-sm font-medium"
           >
             View Gallery
           </Link>
           <Link
             href="/blog"
-            className="px-6 py-2.5 rounded-full border border-[var(--border-subtle)] text-[var(--text-secondary)] text-sm font-medium hover:border-[var(--accent-silver)] hover:text-[var(--text-primary)] transition-all"
+            className="btn-outline px-6 py-2.5 rounded-full border border-[var(--border-subtle)] text-[var(--text-secondary)] text-sm font-medium"
           >
             Read Blog
           </Link>
