@@ -85,24 +85,23 @@ hoshino/
 ## 📸 Adding Your Own Photos
 
 1. **Add the image file** to `public/images/` (JPEG or WebP recommended).
-2. **Register the photo** in `lib/photos.ts`:
+2. **Create a markdown file** in `content/photos/` (the filename becomes the URL slug):
 
-```ts
-{
-  id: "my-unique-slug",
-  title: "Title of the photo",
-  description: "A sentence or two about the shot.",
-  location: "City, Country",
-  date: "2024-07-20",
-  tags: ["milky-way", "landscape"],
-  width: 4000,   // actual pixel width (used for aspect-ratio layout)
-  height: 2667,  // actual pixel height
-  src: "/images/my-photo.jpg",
-  featured: true,   // show on home page
-}
+```markdown
+---
+title: "My Photo Title"
+location: "City, Country"
+date: "2024-07-20"
+tags: ["milky-way", "landscape"]
+src: "/images/my-photo.jpg"
+featured: true   # show on home page
+---
+
+A sentence or two about the shot. Full markdown is supported here —
+you can write as much or as little as you like.
 ```
 
-The gallery will automatically arrange photos using CSS columns masonry based on their aspect ratios.
+That's it. Image dimensions are **auto-detected** at build time, so you don't need to specify width/height. The gallery will automatically arrange photos using CSS columns masonry based on their aspect ratios.
 
 ---
 
