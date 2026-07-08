@@ -91,6 +91,19 @@ export default function Navigation() {
 
         {/* Right controls */}
         <div className="flex items-center gap-3">
+          {/* Search trigger */}
+          <button
+            onClick={() => document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true }))}
+            className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+            aria-label="Search"
+            title="Search (⌘K)"
+          >
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+          </button>
+
           {/* Theme picker */}
           <div className="relative" ref={themePickerRef}>
             <button
