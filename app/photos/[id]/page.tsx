@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllPhotos, getPhotoById } from "@/lib/photos";
+import PhotoCard from "@/components/PhotoCard";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -39,6 +40,10 @@ export default async function PhotoPage({ params }: Props) {
   const idx = all.findIndex((p) => p.id === id);
   const prev = idx > 0 ? all[idx - 1] : null;
   const next = idx < all.length - 1 ? all[idx + 1] : null;
+
+  const related = all
+    .filter((p) => p.id !== id && p.tags.some((t) => photo.tags.includes(t)))
+    .slice(0, 3);
 
   const aspectRatio = photo.width / photo.height;
 
@@ -127,6 +132,18 @@ export default async function PhotoPage({ params }: Props) {
           </dl>
         </aside>
       </div>
+
+      {/* Related photos */}
+      {related.length > 0 && (
+        <section className="space-y-4">
+          <h2 className="text-lg font-semibold text-[var(--text-primary)]">Related Photos</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {related.map((p) => (
+              <PhotoCard key={p.id} photo={p} linkable priority={false} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Prev / Next navigation */}
       <nav className="flex items-center justify-between pt-4 border-t border-[var(--border-subtle)]">
