@@ -4,6 +4,7 @@ import ConditionalStarBackground from "@/components/ConditionalStarBackground";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
+import Search from "@/components/Search";
 
 export const metadata: Metadata = {
   title: {
@@ -32,6 +33,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        <Search />
       </body>
     </html>
   );
