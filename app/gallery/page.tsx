@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import GalleryWithLightbox from "@/components/GalleryWithLightbox";
+import GalleryFilter from "@/components/GalleryFilter";
 import { getAllPhotos } from "@/lib/photos";
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default function GalleryPage() {
       </div>
 
       {/* Gallery */}
-      <GalleryWithLightbox photos={photos} />
+      <GalleryFilter photos={photos} />
     </div>
   );
 }
