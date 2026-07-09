@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Photo } from "@/lib/photos";
+import { getBlurDataURL } from "@/lib/blur";
 
 interface PhotoCardProps {
   photo: Photo;
@@ -14,6 +15,7 @@ export default function PhotoCard({
   linkable = true,
   priority = false,
 }: PhotoCardProps) {
+  const blurDataURL = getBlurDataURL(photo.src);
   const aspectRatio = photo.width / photo.height;
   const isPortrait = aspectRatio < 0.85;
   const isPanoramic = aspectRatio > 1.8;
@@ -34,6 +36,7 @@ export default function PhotoCard({
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
           className="object-cover"
           priority={priority}
+          {...(blurDataURL && { placeholder: "blur", blurDataURL })}
         />
 
         {/* Gradient overlay — slides in on hover */}

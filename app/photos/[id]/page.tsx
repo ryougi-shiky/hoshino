@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllPhotos, getPhotoById } from "@/lib/photos";
+import { getBlurDataURL } from "@/lib/blur";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -41,6 +42,7 @@ export default async function PhotoPage({ params }: Props) {
   const next = idx < all.length - 1 ? all[idx + 1] : null;
 
   const aspectRatio = photo.width / photo.height;
+  const blurDataURL = getBlurDataURL(photo.src);
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-12 space-y-10">
@@ -67,6 +69,7 @@ export default async function PhotoPage({ params }: Props) {
           className="object-cover"
           priority
           sizes="(max-width: 1024px) 100vw, 896px"
+          {...(blurDataURL && { placeholder: "blur", blurDataURL })}
         />
       </div>
 
