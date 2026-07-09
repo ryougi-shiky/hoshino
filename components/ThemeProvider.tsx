@@ -12,15 +12,7 @@ import { useEffect } from "react";
 
 const STORAGE_KEY = "hoshino-theme";
 
-export type Theme =
-  | "starfield"
-  | "monochrome"
-  | "arctic"
-  | "ocean"
-  | "sunset"
-  | "lavender"
-  | "emerald"
-  | "white";
+export type Theme = "starfield" | "monochrome" | "white";
 
 export function getStoredTheme(): Theme {
   if (typeof window === "undefined") return "starfield";

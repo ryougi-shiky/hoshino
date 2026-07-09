@@ -12,14 +12,11 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "gray-matter": "^4.0.3",
     "image-size": "^2.0.2",
     "next": "16.2.9",
     "react": "19.2.5",
     "react-dom": "19.2.5",
-    "remark": "^15.0.1",
-    "remark-gfm": "^4.0.1",
-    "remark-html": "^16.0.1"
+    "yaml": "^2.9.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.1",
