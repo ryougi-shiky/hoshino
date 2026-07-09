@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   description:
     "A photography blog celebrating the night sky — Milky Way, auroras, star trails, and the infinite beauty above us.",
   keywords: ["astrophotography", "night sky", "milky way", "aurora", "stars", "photography blog"],
+  alternates: {
+    types: {
+      "application/rss+xml": "/feed",
+    },
+  },
 };
 
 export default function RootLayout({
