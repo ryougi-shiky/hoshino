@@ -74,7 +74,7 @@ export default function PhotoCard({
     </article>
   );
 
-  if (!linkable) return <div className="masonry-item">{card}</div>;
+  if (!linkable) return card;
 
   return (
     <Link href={`/photos/${photo.id}`} className="block masonry-item">
