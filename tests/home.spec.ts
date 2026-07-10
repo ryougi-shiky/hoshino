@@ -4,7 +4,7 @@ test.describe("Photo journal", () => {
   test("displays site name and photos", async ({ page }) => {
     await page.goto("/");
 
-    await expect(page.getByText("星野 Hoshino")).toBeVisible();
+    await expect(page.getByRole("link", { name: "✦ 星野 Hoshino" })).toBeVisible();
     await expect(page.locator("article").first()).toBeVisible();
   });
 
