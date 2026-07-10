@@ -58,7 +58,7 @@ export default function Lightbox({
       className="fixed inset-0 z-50 flex items-center justify-center"
       role="dialog"
       aria-modal="true"
-      aria-label={photo.title}
+      aria-label={photo.caption}
     >
       {/* Backdrop */}
       <div
@@ -70,7 +70,7 @@ export default function Lightbox({
       <button
         onClick={onClose}
         className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-        aria-label="Close lightbox"
+        aria-label="Close"
       >
         <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M18 6L6 18M6 6l12 12" />
@@ -82,7 +82,7 @@ export default function Lightbox({
         {currentIndex + 1} / {photos.length}
       </div>
 
-      {/* Previous button */}
+      {/* Previous */}
       {hasPrev && (
         <button
           onClick={goPrev}
@@ -95,7 +95,7 @@ export default function Lightbox({
         </button>
       )}
 
-      {/* Next button */}
+      {/* Next */}
       {hasNext && (
         <button
           onClick={goNext}
@@ -112,7 +112,7 @@ export default function Lightbox({
       <div className="relative z-[1] max-w-[90vw] max-h-[85vh] w-full h-full flex items-center justify-center">
         <Image
           src={photo.src}
-          alt={photo.title}
+          alt={photo.caption}
           width={photo.width}
           height={photo.height}
           className="object-contain max-w-full max-h-[85vh] w-auto h-auto rounded-lg"
@@ -122,9 +122,11 @@ export default function Lightbox({
       </div>
 
       {/* Caption */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-center">
-        <h3 className="text-white font-medium text-sm">{photo.title}</h3>
-        <p className="text-white/60 text-xs mt-0.5">{photo.location}</p>
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-center max-w-md px-4">
+        <p className="text-white text-sm">{photo.caption}</p>
+        {photo.location && photo.location !== "N/A" && (
+          <p className="text-white/60 text-xs mt-0.5">{photo.location}</p>
+        )}
       </div>
     </div>
   );

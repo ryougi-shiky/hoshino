@@ -17,7 +17,6 @@
   --border-subtle: rgba(200, 216, 240, 0.1);
   --star-color: rgba(255, 255, 255, 0.8);
 
-  /* ── Glass / theme variables (Starfield default) ── */
   --glass-bg: rgba(10, 14, 39, 0.62);
   --glass-border: rgba(200, 216, 240, 0.13);
   --glass-highlight: rgba(255, 255, 255, 0.04);
@@ -26,15 +25,12 @@
   --nav-border: rgba(200, 216, 240, 0.10);
   --theme-primary: #4a9eff;
   --theme-secondary: #c8d8f0;
-  --photo-hover-shadow: rgba(74, 158, 255, 0.18);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   THEME PALETTES
-   Each theme only tints the glass panels — photos stay dominant.
+   THEMES
    ═══════════════════════════════════════════════════════════════ */
 
-/* Starfield — night sky (also the :root default) */
 [data-theme="starfield"] {
   --glass-bg: rgba(10, 14, 39, 0.62);
   --glass-border: rgba(200, 216, 240, 0.13);
@@ -44,75 +40,8 @@
   --nav-border: rgba(200, 216, 240, 0.10);
   --theme-primary: #4a9eff;
   --theme-secondary: #c8d8f0;
-  --photo-hover-shadow: rgba(74, 158, 255, 0.18);
 }
 
-/* Arctic — white / ice-blue glass */
-[data-theme="arctic"] {
-  --glass-bg: rgba(180, 225, 255, 0.08);
-  --glass-border: rgba(200, 235, 255, 0.20);
-  --glass-highlight: rgba(220, 245, 255, 0.07);
-  --glass-shadow: rgba(0, 20, 50, 0.50);
-  --nav-bg: rgba(5, 15, 35, 0.72);
-  --nav-border: rgba(160, 215, 255, 0.15);
-  --theme-primary: #62ccff;
-  --theme-secondary: #b0deff;
-  --photo-hover-shadow: rgba(98, 204, 255, 0.22);
-}
-
-/* Ocean — cyan / teal glass */
-[data-theme="ocean"] {
-  --glass-bg: rgba(0, 180, 180, 0.08);
-  --glass-border: rgba(0, 210, 200, 0.18);
-  --glass-highlight: rgba(0, 240, 220, 0.05);
-  --glass-shadow: rgba(0, 30, 40, 0.50);
-  --nav-bg: rgba(0, 20, 30, 0.75);
-  --nav-border: rgba(0, 200, 190, 0.15);
-  --theme-primary: #00c8be;
-  --theme-secondary: #7deae4;
-  --photo-hover-shadow: rgba(0, 200, 190, 0.20);
-}
-
-/* Sunset — orange / warm amber glass */
-[data-theme="sunset"] {
-  --glass-bg: rgba(200, 90, 20, 0.08);
-  --glass-border: rgba(240, 140, 60, 0.18);
-  --glass-highlight: rgba(255, 180, 80, 0.05);
-  --glass-shadow: rgba(40, 10, 0, 0.50);
-  --nav-bg: rgba(25, 8, 0, 0.75);
-  --nav-border: rgba(240, 130, 50, 0.15);
-  --theme-primary: #f07830;
-  --theme-secondary: #f0c878;
-  --photo-hover-shadow: rgba(240, 120, 48, 0.22);
-}
-
-/* Lavender — purple glass */
-[data-theme="lavender"] {
-  --glass-bg: rgba(140, 80, 220, 0.08);
-  --glass-border: rgba(180, 120, 255, 0.18);
-  --glass-highlight: rgba(200, 160, 255, 0.05);
-  --glass-shadow: rgba(20, 5, 50, 0.50);
-  --nav-bg: rgba(12, 4, 30, 0.75);
-  --nav-border: rgba(170, 110, 255, 0.15);
-  --theme-primary: #b07aff;
-  --theme-secondary: #d4b0ff;
-  --photo-hover-shadow: rgba(160, 100, 255, 0.22);
-}
-
-/* Emerald — green glass */
-[data-theme="emerald"] {
-  --glass-bg: rgba(20, 160, 80, 0.08);
-  --glass-border: rgba(40, 200, 100, 0.18);
-  --glass-highlight: rgba(80, 220, 130, 0.05);
-  --glass-shadow: rgba(0, 25, 10, 0.50);
-  --nav-bg: rgba(0, 18, 8, 0.75);
-  --nav-border: rgba(40, 190, 100, 0.15);
-  --theme-primary: #28c864;
-  --theme-secondary: #80e4a8;
-  --photo-hover-shadow: rgba(40, 200, 100, 0.22);
-}
-
-/* Monochrome — neutral dark, no stars */
 [data-theme="monochrome"] {
   --bg-deep: #0c0c0e;
   --bg-mid: #111113;
@@ -131,10 +60,8 @@
   --nav-border: rgba(200, 200, 220, 0.10);
   --theme-primary: #4a9eff;
   --theme-secondary: #c4c8d4;
-  --photo-hover-shadow: rgba(74, 158, 255, 0.18);
 }
 
-/* White — clean light mode */
 [data-theme="white"] {
   --bg-deep: #f8f8fc;
   --bg-mid: #f0f0f6;
@@ -155,7 +82,6 @@
   --nav-border: rgba(0, 0, 0, 0.08);
   --theme-primary: #2255cc;
   --theme-secondary: #5577ee;
-  --photo-hover-shadow: rgba(34, 85, 204, 0.18);
 }
 
 @theme inline {
@@ -178,7 +104,6 @@ html {
 body {
   background: var(--bg-deep);
   color: var(--text-primary);
-  /* Smooth background/color shift when switching themes */
   transition: background-color 300ms ease, color 300ms ease;
   font-family: "Inter", system-ui, -apple-system,
     "Segoe UI", "Noto Sans CJK JP", "Hiragino Kaku Gothic ProN",
@@ -214,8 +139,7 @@ a {
   text-decoration: none;
 }
 
-/* ── Star canvas — safety net for Starfield theme; actual lifecycle
-   is controlled by ConditionalStarBackground (client component) ── */
+/* ── Star canvas ── */
 #star-canvas {
   position: fixed;
   inset: 0;
@@ -248,79 +172,6 @@ a {
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.30);
 }
 
-/* ── Masonry gallery ── */
-.masonry-grid {
-  columns: 1;
-  column-gap: 1.25rem;
-}
-@media (min-width: 640px) {
-  .masonry-grid {
-    columns: 2;
-  }
-}
-@media (min-width: 1024px) {
-  .masonry-grid {
-    columns: 3;
-  }
-}
-@media (min-width: 1280px) {
-  .masonry-grid {
-    columns: 4;
-  }
-}
-
-.masonry-item {
-  break-inside: avoid;
-  margin-bottom: 1.25rem;
-  display: block;
-}
-
-/* ── Photo card ── */
-.photo-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  cursor: pointer;
-  /* GPU-friendly composite layer */
-  will-change: transform;
-  transition:
-    transform 200ms ease,
-    box-shadow 200ms ease;
-}
-.photo-card:hover {
-  transform: scale(1.04);
-  box-shadow:
-    0 12px 40px var(--photo-hover-shadow),
-    0 4px 16px rgba(0, 0, 0, 0.5);
-}
-
-/* ── Button glow effect ── */
-.btn-primary {
-  transition:
-    opacity 150ms ease,
-    box-shadow 150ms ease,
-    transform 150ms ease;
-}
-.btn-primary:hover {
-  opacity: 0.88;
-  box-shadow: 0 0 18px color-mix(in srgb, var(--theme-primary) 45%, transparent);
-  transform: scale(1.03);
-}
-
-.btn-outline {
-  transition:
-    border-color 150ms ease,
-    color 150ms ease,
-    box-shadow 150ms ease,
-    transform 150ms ease;
-}
-.btn-outline:hover {
-  border-color: var(--theme-secondary);
-  color: var(--text-primary);
-  box-shadow: 0 0 12px color-mix(in srgb, var(--theme-secondary) 25%, transparent);
-  transform: scale(1.03);
-}
-
 /* ── Gradient text ── */
 .gradient-text {
   background: linear-gradient(135deg, var(--accent-silver), var(--accent-gold));
@@ -329,97 +180,15 @@ a {
   background-clip: text;
 }
 
-/* ── Blog post prose ── */
-.prose-hoshino h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin: 2rem 0 1rem;
-  border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 0.5rem;
+/* ── Photo card ── */
+.photo-card {
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
 }
-.prose-hoshino h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--accent-silver);
-  margin: 1.5rem 0 0.75rem;
+.photo-card:hover {
+  transform: scale(1.01);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.3),
+    0 2px 10px rgba(0, 0, 0, 0.2);
 }
-.prose-hoshino p {
-  color: var(--text-secondary);
-  line-height: 1.8;
-  margin-bottom: 1.25rem;
-}
-.prose-hoshino a {
-  color: var(--accent-blue);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.prose-hoshino a:hover {
-  color: var(--accent-gold);
-}
-.prose-hoshino ul,
-.prose-hoshino ol {
-  color: var(--text-secondary);
-  padding-left: 1.5rem;
-  margin-bottom: 1.25rem;
-  line-height: 1.8;
-}
-.prose-hoshino li {
-  margin-bottom: 0.25rem;
-}
-.prose-hoshino blockquote {
-  border-left: 3px solid var(--accent-gold);
-  padding-left: 1rem;
-  margin: 1.5rem 0;
-  color: var(--text-muted);
-  font-style: italic;
-}
-.prose-hoshino code {
-  background: var(--bg-card);
-  color: var(--accent-gold);
-  padding: 0.15rem 0.4rem;
-  border-radius: 4px;
-  font-family: "Fira Code", "Cascadia Code", ui-monospace, monospace;
-  font-size: 0.875em;
-}
-.prose-hoshino pre {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 1rem;
-  overflow-x: auto;
-  margin-bottom: 1.25rem;
-}
-.prose-hoshino pre code {
-  background: none;
-  padding: 0;
-}
-.prose-hoshino img {
-  border-radius: 8px;
-  width: 100%;
-  height: auto;
-  margin: 1.5rem 0;
-}
-.prose-hoshino table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1.25rem;
-  font-size: 0.875rem;
-}
-.prose-hoshino th {
-  background: var(--bg-card);
-  color: var(--accent-silver);
-  font-weight: 600;
-  padding: 0.6rem 1rem;
-  text-align: left;
-  border: 1px solid var(--border-subtle);
-}
-.prose-hoshino td {
-  color: var(--text-secondary);
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--border-subtle);
-}
-.prose-hoshino tr:nth-child(even) td {
-  background: color-mix(in srgb, var(--bg-card) 40%, transparent);
-}
-
