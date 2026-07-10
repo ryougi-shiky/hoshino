@@ -35,6 +35,7 @@ export default function PhotoGrid({ photos, blurMap }: PhotoGridProps) {
               {yearPhotos.map((photo, i) => {
                 const globalIndex = startIndex + i;
                 const blurDataURL = blurMap[photo.src];
+                const isPortrait = photo.width < photo.height;
 
                 return (
                   <article
@@ -43,7 +44,9 @@ export default function PhotoGrid({ photos, blurMap }: PhotoGridProps) {
                   >
                     {/* Photo */}
                     <div
-                      className="w-full md:w-2/3 overflow-hidden rounded-lg cursor-pointer photo-card"
+                      className={`w-full overflow-hidden rounded-lg cursor-pointer photo-card ${
+                        isPortrait ? "md:w-2/5" : "md:w-2/3"
+                      }`}
                       onClick={() => setLightboxIndex(globalIndex)}
                     >
                       <Image
@@ -52,14 +55,14 @@ export default function PhotoGrid({ photos, blurMap }: PhotoGridProps) {
                         width={photo.width}
                         height={photo.height}
                         className="w-full h-auto"
-                        sizes="(max-width: 768px) 100vw, 60vw"
+                        sizes={isPortrait ? "(max-width: 768px) 100vw, 40vw" : "(max-width: 768px) 100vw, 60vw"}
                         priority={globalIndex < 2}
                         {...(blurDataURL && { placeholder: "blur" as const, blurDataURL })}
                       />
                     </div>
 
                     {/* Info */}
-                    <div className="w-full md:w-1/3 md:pt-4 space-y-2">
+                    <div className={`w-full md:pt-4 space-y-2 ${isPortrait ? "md:w-3/5" : "md:w-1/3"}`}>
                       <p className="text-sm text-[var(--text-primary)] leading-relaxed">
                         {photo.caption}
                       </p>
