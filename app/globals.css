@@ -183,11 +183,13 @@ a {
 /* ── Photo card ── */
 .photo-card {
   transition:
-    transform 200ms ease,
-    box-shadow 200ms ease;
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    filter 250ms ease;
 }
 .photo-card:hover {
-  transform: scale(1.01);
+  transform: scale(1.02);
+  filter: brightness(1.05);
   box-shadow:
     0 8px 30px rgba(0, 0, 0, 0.3),
     0 2px 10px rgba(0, 0, 0, 0.2);

@@ -40,13 +40,12 @@ export default function PhotoGrid({ photos, blurMap }: PhotoGridProps) {
                 return (
                   <article
                     key={`${photo.src}-${globalIndex}`}
-                    className="flex flex-col md:flex-row gap-6 items-start"
+                    className={`flex flex-col md:flex-row gap-8 md:items-center ${
+                      isPortrait ? "md:h-[65vh]" : "md:h-[45vh]"
+                    }`}
                   >
-                    {/* Photo */}
                     <div
-                      className={`w-full overflow-hidden rounded-lg cursor-pointer photo-card ${
-                        isPortrait ? "md:w-2/5" : "md:w-2/3"
-                      }`}
+                      className="w-full md:w-auto md:h-full md:shrink-0 overflow-hidden rounded-lg cursor-pointer photo-card"
                       onClick={() => setLightboxIndex(globalIndex)}
                     >
                       <Image
@@ -54,15 +53,14 @@ export default function PhotoGrid({ photos, blurMap }: PhotoGridProps) {
                         alt={photo.caption}
                         width={photo.width}
                         height={photo.height}
-                        className="w-full h-auto"
-                        sizes={isPortrait ? "(max-width: 768px) 100vw, 40vw" : "(max-width: 768px) 100vw, 60vw"}
+                        className="w-full md:w-auto md:h-full rounded-lg object-cover"
+                        sizes={isPortrait ? "(max-width: 768px) 100vw, 45vw" : "(max-width: 768px) 100vw, 60vw"}
                         priority={globalIndex < 2}
                         {...(blurDataURL && { placeholder: "blur" as const, blurDataURL })}
                       />
                     </div>
 
-                    {/* Info */}
-                    <div className={`w-full md:pt-4 space-y-2 ${isPortrait ? "md:w-3/5" : "md:w-1/3"}`}>
+                    <div className="w-full md:flex-1 space-y-2">
                       <p className="text-sm text-[var(--text-primary)] leading-relaxed">
                         {photo.caption}
                       </p>
