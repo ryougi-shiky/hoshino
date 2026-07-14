@@ -36,10 +36,13 @@ export default function PhotoGrid({ photos, blurMap }: PhotoGridProps) {
                 const globalIndex = startIndex + i;
                 const blurDataURL = blurMap[photo.src];
                 const isEven = globalIndex % 2 === 0;
+                const isPortrait = photo.width < photo.height;
+                const photoWidth = isPortrait ? "md:w-2/5" : "md:w-3/5";
+                const infoWidth = isPortrait ? "md:w-3/5" : "md:w-2/5";
 
                 const photoBlock = (
                   <div
-                    className="w-full md:w-3/5 overflow-hidden rounded-lg cursor-pointer photo-card"
+                    className={`w-full ${photoWidth} overflow-hidden rounded-lg cursor-pointer photo-card`}
                     onClick={() => setLightboxIndex(globalIndex)}
                   >
                     <Image
@@ -48,7 +51,7 @@ export default function PhotoGrid({ photos, blurMap }: PhotoGridProps) {
                       width={photo.width}
                       height={photo.height}
                       className="w-full h-auto rounded-lg"
-                      sizes="(max-width: 768px) 100vw, 60vw"
+                      sizes={isPortrait ? "(max-width: 768px) 100vw, 40vw" : "(max-width: 768px) 100vw, 60vw"}
                       priority={globalIndex < 2}
                       {...(blurDataURL && { placeholder: "blur" as const, blurDataURL })}
                     />
@@ -56,7 +59,7 @@ export default function PhotoGrid({ photos, blurMap }: PhotoGridProps) {
                 );
 
                 const infoBlock = (
-                  <div className={`w-full md:w-2/5 space-y-2 ${isEven ? "md:text-left" : "md:text-right"}`}>
+                  <div className={`w-full ${infoWidth} space-y-2 ${isEven ? "md:text-left" : "md:text-right"}`}>
                     <p className="text-sm text-[var(--text-primary)] leading-relaxed">
                       {photo.caption}
                     </p>
