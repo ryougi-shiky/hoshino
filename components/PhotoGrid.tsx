@@ -50,7 +50,7 @@ export default function PhotoGrid({ photos, blurMap }: PhotoGridProps) {
                       alt={photo.caption}
                       width={photo.width}
                       height={photo.height}
-                      className="w-full h-auto rounded-lg"
+                      className={isPortrait ? "max-h-[60vh] w-auto h-auto rounded-lg" : "w-full h-auto rounded-lg"}
                       sizes={isPortrait ? "(max-width: 768px) 100vw, 40vw" : "(max-width: 768px) 100vw, 60vw"}
                       priority={globalIndex < 2}
                       {...(blurDataURL && { placeholder: "blur" as const, blurDataURL })}
