@@ -44,3 +44,43 @@ Minimal Next.js 16 App Router photo journal with Tailwind CSS v4. Single page, s
 **Commit messages:** Conventional Commits — `type(scope): description`
 - Scopes: `gallery`, `theme`, `nav`, `deps`, `ci`, `config`
 - Enforced locally by commitlint + husky (commit-msg hook)
+
+## Layout Rules
+
+The photo feed uses an alternating layout. These constraints MUST be maintained:
+
+**Photo sizing (desktop):**
+- Landscape photos: `md:w-3/5` (60% column width)
+- Portrait photos: `md:w-2/5` (40% column width) with `max-h-[60vh]`
+- The goal: landscape and portrait photos should have comparable visual weight on screen
+
+**Alternating sides:**
+- Even-indexed rows: photo left, text right
+- Odd-indexed rows: text left, photo right
+- Text alignment mirrors position (left-aligned when on left side, right-aligned when on right)
+
+**Mobile:** photos always stack above text at full width.
+
+## Agent Rules
+
+Rules to prevent common mistakes:
+
+**Before making CSS/layout changes:**
+1. Identify ALL constraints that currently apply (width, height, max-height, aspect ratio handling)
+2. When changing one constraint, verify it doesn't break the balance with other photo orientations
+3. Portrait and landscape photos must always be visually comparable — test both mentally before committing
+
+**Never do:**
+- Use a fixed row height for all photos (portrait becomes tiny or landscape becomes oversized)
+- Give portrait and landscape the same column width (portrait dominates due to aspect ratio)
+- Apply `object-cover` that crops photos — these are photography showcase images
+- Make multiple experimental commits trying different approaches. Decide the approach FIRST, then implement once
+
+**Before pushing any layout change:**
+1. Run `npm run build` to verify no errors
+2. Mentally calculate: what does a 2:3 portrait look like at this width? What does a 3:2 landscape?
+3. If the portrait rendered height is more than ~1.5x the landscape rendered height, the balance is wrong
+
+**One PR, one coherent change:**
+- Don't iterate in multiple force-pushes. Think through the solution, implement it cleanly, push once
+- If unsure about the approach, ask the user before implementing — don't guess and iterate
