@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
   //     generateStaticParams(), so the static build will work out of the box.
   output: "standalone",
 
+  experimental: {
+    // TypeScript 7 removed the compiler API that Next.js uses for type checking.
+    // useTypeScriptCli delegates type checking to the TypeScript CLI instead.
+    useTypeScriptCli: true,
+  },
+
   images: {
     // Allow SVG images (used for placeholder astrophotography shots).
     // In production replace these with real JPEG/WebP images.
